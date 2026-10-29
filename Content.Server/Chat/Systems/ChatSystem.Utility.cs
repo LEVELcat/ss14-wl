@@ -1,5 +1,8 @@
 using System.Linq;
 using System.Text;
+using Content.Server._WL.Languages;
+using Content.Shared._WL.Languages;
+using Content.Shared._WL.Languages.Components;
 using Content.Shared.Chat;
 using Content.Shared.Ghost.Components;
 using Content.Shared.Players;
@@ -62,41 +65,51 @@ public sealed partial class ChatSystem
     }
 
     // WL-Changes: Lang X Chat start
-    private void SendInVoiceRangeObfuscated(ChatChannel channel, string message, string wrappedMessage, ChatChannel obfuscatedChannel, string obfuscatedMessage, string obfuscatedWrapMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null, InGameICChatType chatType = InGameICChatType.Speak) // WL-Languages
+    private void SendInVoiceRangeObfuscated(ChatChannel channel, string message, string wrappedMessage, ChatChannel obfuscatedChannel, EntityUid source, ChatTransmitRange range, ProtoId<LanguagePrototype> langId, string senderName, LanguageMessageContext languageContext, float passability, NetUserId? author = null, InGameICChatType chatType = InGameICChatType.Speak)
     {
-        foreach (var (session, data) in GetRecipients(source, VoiceRange, chatType)) // WL-Languages
+        var speechMessages = new Dictionary<EntityUid, string>();
+        foreach (var (session, data) in GetRecipients(source, VoiceRange, chatType))
         {
             var entRange = MessageRangeCheck(session, data, range);
             if (entRange == MessageRangeCheckResult.Disallowed)
                 continue;
             var entHideChat = entRange == MessageRangeCheckResult.HideChat;
 
-            if (session.AttachedEntity is not { Valid: true } listener) // WL-Languages
+            if (session.AttachedEntity is not { Valid: true } listener)
                 continue;
 
-            //WL-Changes-Start Language
-            if (!_languages.CanUnderstand(source, listener, message))
+            var canColor = _languages.CanUnderstand(langId, listener, LanguageLevel.Low);
+
+            var language = ProtoMan.Index(langId);
+            var understood = _languages.GetUnderstoodMessage(languageContext, listener);
+            if (passability < 1f)
+                understood = _languages.ObfuscateMessageReadability(understood, passability);
+
+            if (!_languages.CanUnderstand(langId, listener))
             {
                 var listenerMessage =
-                    _languages.ObfuscateMessageFromSource(message, source, listener);
+                    understood;
+                speechMessages[listener] = listenerMessage;
 
                 var listenerWrappedMessage =
-                    _languages.IsObfusEmoting(source, message)
-                        ? _languages.GetEmoteWrappedMessage(listenerMessage, source, Name(source))
-                        : _languages.GetWrappedMessage(listenerMessage, source, Name(source), GetSpeechVerb(source, message), false);
+                    language.Emoting
+                        ? _languages.GetEmoteWrappedMessage(listenerMessage, source, senderName)
+                        : _languages.GetWrappedMessage(listenerMessage, langId, senderName, GetSpeechVerb(source, message), canColor);
 
                 _chatManager.ChatMessageToOne(obfuscatedChannel, listenerMessage, listenerWrappedMessage, source, entHideChat, session.Channel, author: author);
             }
             else
             {
-                _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author);
+                speechMessages[listener] = understood;
+                var listenerWrappedMessage = _languages.GetWrappedMessage(understood, langId, senderName, GetSpeechVerb(source, message), canColor, listener);
+                _chatManager.ChatMessageToOne(channel, understood, listenerWrappedMessage, source, entHideChat, session.Channel, author: author);
             }
-            //WL-Changes-End Language
         }
 
+        RaiseLocalEvent(source, new LanguageSpeechEvent(langId, speechMessages));
         _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
     }
-    // WL-Changes: Lang X Chat start
+    // WL-Changes: Lang X Chat end
 
     /// <summary>
     ///     Sends a chat message to the given players in range of the source entity.

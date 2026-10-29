@@ -13,16 +13,10 @@ public sealed partial class TTSSystem
     private static readonly Regex RegexDecimal = new Regex(@"(?<=[1-90])(\.|,)(?=[1-90])");
     private static readonly Regex RegexDigits = new Regex(@"\d+");
 
-    private void OnTransformSpeech(TransformSpeechEvent args)
-    {
-        if (!_isEnabled) return;
-        args.Message = args.Message.Replace("+", "");
-    }
-
     private string Sanitize(string text)
     {
         text = text.Trim();
-        text = RegexInvalidChars.Replace(text, "");
+        text = RegexInvalidChars.Replace(text.Replace('~', ' '), ""); // WL-Changes: Keep obscured fragments separated.
         text = RegexWordBoundary.Replace(text, ReplaceMatchedWord);
         text = RegexLatToCyr.Replace(text, ReplaceLat2Cyr);
         text = RegexDecimal.Replace(text, " целых ");

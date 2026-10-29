@@ -36,6 +36,11 @@
     enum.HumanoidVisualLayers.RHand:
       limit: 1
       required: false
+    #WL-Changes-start
+    enum.HumanoidVisualLayers.Socks:
+      limit: 1
+      required: false
+    #WL-Changes-end
     enum.HumanoidVisualLayers.LLeg:
       limit: 1
       required: false
@@ -189,7 +194,6 @@
           True: { shader: unshaded }
           False: { shader: shaded }
   - type: Temperature
-    specificHeat: 42 #42
   - type: TemperatureDamage
     heatDamageThreshold: 460
     coldDamageThreshold: 270.3 #293.3 предел
@@ -310,13 +314,6 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
-  #WL-Changes: Languages start
-  - type: Languages
-    list:
-    - language: Translate
-      languageLevel: 4
-    specieLanguage: Translate
-  #WL-Changes: Languages end
   - type: Instrument
     allowPercussion: false
     handheld: false
