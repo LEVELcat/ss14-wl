@@ -155,6 +155,11 @@
     shoes: ClothingShoesBootsJackFilled
 
 - type: loadout
+  id: JackBootsToeless
+  equipment:
+    shoes: ClothingShoesBootsJackToelessFilled
+
+- type: loadout
   id: SecurityWinterBoots
   equipment:
     shoes: ClothingShoesBootsWinterSecFilled

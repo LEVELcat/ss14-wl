@@ -9,3 +9,7 @@ ent-ClothingShoesBootsWorkToeless = Рабочие ботинки безноск
 
 ent-ClothingShoesBootsJackToeless = Подкованные ботинки безносковые
     .desc = Модифицированы для видов с когтями на ногах
+
+ent-ClothingShoesBootsJackToelessFilled = { ent-ClothingShoesBootsJackToeless }
+    .desc = { ent-ClothingShoesBootsJackToeless.desc }
+    .suffix = { ent-ClothingShoesBootsSecFilled.suffix }

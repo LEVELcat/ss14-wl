@@ -124,6 +124,11 @@
     shoes: ClothingShoesBootsWork
 
 - type: loadout
+  id: WorkBootsToeless
+  equipment:
+    shoes: ClothingShoesBootsWorkToeless
+
+- type: loadout
   id: EngineeringWinterBoots
   equipment:
     shoes: ClothingShoesBootsWinterEngi
