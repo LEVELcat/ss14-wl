@@ -95,12 +95,12 @@
       sprite: _WL/Clothing/Shoes/Boots/workboots-toeless.rsi
     - type: Clothing
       sprite: _WL/Clothing/Shoes/Boots/workboots-toeless.rsi
-      clothingVisuals:
-        shoes:
-        - state: equipped-FEET
-        - state: equipped-FEET-reptilian
-        - state: equipped-FEET-vox
-        - state: equipped-FEET-akula
+      # clothingVisuals:
+      #   shoes:
+      #   - state: equipped-FEET
+      #   - state: equipped-FEET-reptilian
+      #   - state: equipped-FEET-vox
+        #- state: equipped-FEET-akula
 
 - type: entity
   parent: ClothingShoesBootsJack
@@ -112,9 +112,9 @@
       sprite: _WL/Clothing/Shoes/Boots/jackboots-toeless.rsi
     - type: Clothing
       sprite: _WL/Clothing/Shoes/Boots/jackboots-toeless.rsi
-      clothingVisuals:
-        shoes:
-        - state: equipped-FEET
-        - state: equipped-FEET-reptilian
-        - state: equipped-FEET-vox
-        - state: equipped-FEET-akula
+      # clothingVisuals:
+      #   shoes:
+      #   - state: equipped-FEET
+      #   - state: equipped-FEET-reptilian
+      #   - state: equipped-FEET-vox
+        #- state: equipped-FEET-akula
