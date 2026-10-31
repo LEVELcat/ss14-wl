@@ -88,33 +88,21 @@
 - type: entity
   parent: ClothingShoesBootsWork
   id: ClothingShoesBootsWorkToeless
-  name: workboots-toeless
-  description: changeME.
+  name: toeless workboots
+  description: Modified for species with claws on their feet.
   components:
     - type: Sprite
       sprite: _WL/Clothing/Shoes/Boots/workboots-toeless.rsi
     - type: Clothing
       sprite: _WL/Clothing/Shoes/Boots/workboots-toeless.rsi
-      # clothingVisuals:
-      #   shoes:
-      #   - state: equipped-FEET
-      #   - state: equipped-FEET-reptilian
-      #   - state: equipped-FEET-vox
-        #- state: equipped-FEET-akula
 
 - type: entity
   parent: ClothingShoesBootsJack
   id: ClothingShoesBootsJackToeless
-  name: jackboots-toeless
-  description: changeMe.
+  name: toeless jackboots
+  description: Modified for species with claws on their feet.
   components:
     - type: Sprite
       sprite: _WL/Clothing/Shoes/Boots/jackboots-toeless.rsi
     - type: Clothing
       sprite: _WL/Clothing/Shoes/Boots/jackboots-toeless.rsi
-      # clothingVisuals:
-      #   shoes:
-      #   - state: equipped-FEET
-      #   - state: equipped-FEET-reptilian
-      #   - state: equipped-FEET-vox
-        #- state: equipped-FEET-akula
