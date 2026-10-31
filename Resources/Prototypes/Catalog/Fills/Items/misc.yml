@@ -11,12 +11,6 @@
   - ClothingShoesBootsJack
   - ClothingShoesBootsSecFilled
 
-- type: entity # WL-Changes
-  id: ClothingShoesBootsJackToelessFilled
-  parent:
-  - ClothingShoesBootsJackToeless
-  - ClothingShoesBootsSecFilled
-
 - type: entity
   id: ClothingShoesBootsWinterSecFilled
   parent:
