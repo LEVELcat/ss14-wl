@@ -4,10 +4,10 @@ ent-ClothingShoesElegantBlackShoes = элегантные чёрные туфл�
 ent-ClothingShoesElegantBrownShoes = элегантные коричневые туфли
     .desc = Элегантно.
 
-ent-ClothingShoesBootsWorkToeless = Рабочие ботинки безносковые
+ent-ClothingShoesBootsWorkToeless = Беспалые рабочие ботинки
     .desc = Модифицированы для видов с когтями на ногах
 
-ent-ClothingShoesBootsJackToeless = Подкованные ботинки безносковые
+ent-ClothingShoesBootsJackToeless = Беспалые подкованные ботинки
     .desc = Модифицированы для видов с когтями на ногах
 
 ent-ClothingShoesBootsJackToelessFilled = { ent-ClothingShoesBootsJackToeless }
